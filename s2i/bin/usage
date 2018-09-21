@@ -1,12 +1,12 @@
 #!/bin/bash -e
 cat <<EOF
-This is the springboot-centos7 S2I image:
-To use it, install S2I: https://github.com/openshift/source-to-image
+This is an S2I SpringBoot v2.0 Final centos base image responsible for consuming a MAVEN project.
+To use it, install S2I: https://github.com/blueholes/s2i-springboot.
 
 Sample invocation:
 
-s2i build <source code path/URL> springboot-centos7 <application image>
+s2i build https://github.com/blueholes/openshift-springboot-sample.git springboot-centos7 springboot-sample
 
 You can then run the resulting image via:
-docker run <application image>
+docker run springboot-sample
 EOF
