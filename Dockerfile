@@ -20,6 +20,8 @@ ENV MAVEN_VERSION=3.5.4
 LABEL io.k8s.description="Platform for building and running Spring Boot applications" \
       io.k8s.display-name="Spring Boot Maven 3" \
       io.openshift.expose-services="8080:http" \
+      io.openshift.expose-services="8210:http" \
+      io.openshift.expose-services="8310:http" \
       io.openshift.tags="builder,java,java8,maven,maven3,springboot" \
       io.openshift.s2i.destination="/opt/s2i/destination"
 
@@ -37,6 +39,7 @@ RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-
     mkdir -p /opt/s2i/destination
 
 # TODO: Add s2i wildfly customizations
+
 ADD ./contrib/settings.xml $HOME/.m2/
 
 # TODO (optional): Copy the builder files into /opt/app-root
@@ -52,7 +55,9 @@ RUN chown -R 1001:0 $HOME && \
     chmod -R g+rw /opt/s2i/destination
 
 # TODO: Set the default port for applications built using this image
-# EXPOSE 8080
+EXPOSE 8080
+EXPOSE 8210
+EXPOSE 8310
 
 # TODO: Set the default CMD for the image
 # CMD ["/usr/libexec/s2i/usage"]
